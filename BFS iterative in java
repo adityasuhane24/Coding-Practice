@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+
+class Graph{
+    Map<Integer,ArrayList<Integer>> adj;
+    Graph(int v){
+        adj=new HashMap<Integer,ArrayList<Integer>>();
+        for(int i=0;i<=v;i++){
+        ArrayList<Integer> al=new ArrayList<>();
+            adj.put(i,al);
+        }
+        
+    }
+        void iedge(int src,int dst){
+            adj.get(src).add(dst);
+            adj.get(dst).add(src);
+        }
+}
+
+class GFG {
+	public static void main (String[] args) {
+		Graph g=new Graph(5);
+		g.iedge(1,0);
+		g.iedge(0,2);
+		g.iedge(3,0);
+		g.iedge(4,0);
+		g.iedge(5,0);
+		
+		boolean[] v=new boolean[6];
+		Queue<ArrayList<Integer>> q=new ArrayDeque<>();
+		q.add(g.adj.get(1));
+		v[1]=true;
+		System.out.print(1+" ");
+		while(!q.isEmpty()){
+		   ArrayList<Integer> al=q.remove();
+		   for(int h : al){
+		       if(v[h]==false){
+		       System.out.print(h+" ");
+		       q.add(g.adj.get(h));
+		       v[h]=true;
+		       }
+		   }
+		}
+	}
+	
+}
