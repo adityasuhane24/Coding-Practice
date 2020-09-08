@@ -1,0 +1,35 @@
+/*
+g : adjacency list of graph
+N : number of vertices
+
+return a list containing the DFS traversal of the given graph
+*/
+
+class Traversal
+{
+    static ArrayList<Integer> al=new ArrayList<>();
+    static ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> g, int N)
+    {
+       // add your code here
+       al.clear();
+       boolean[] v=new boolean[N];
+       v[0]=true;
+       al.add(0);
+       bfs(v,0,g);
+       
+       return al;
+       
+    }
+    
+    static void bfs(boolean[] v,int a,ArrayList<ArrayList<Integer>> g){
+        ArrayList<Integer> p=g.get(a);
+        
+        for(int h : p){
+            if(v[h]==false){
+                v[h]=true;
+                al.add(h);
+                bfs(v,h,g);
+            }
+        }
+    }    
+}
