@@ -1,0 +1,34 @@
+/*
+ArrayList<ArrayList<Integer>> g: represent graph containing 'V' number of
+                                    vertices and edges between them
+V: represent number of vertices
+*/
+class DetectCycle{
+    static boolean isCyclic(int V,ArrayList<ArrayList<Integer> g){
+      boolean[] v=new boolean[V];
+      for(int i=0;i<V;i++){
+      if(!v[i]){
+      if(isCyclic(i,vg,-1)){
+      return true;
+      }
+     }
+   }
+   return false;
+  }
+
+    static boolean isCyclicUtil(int i,boolean[] v,ArrayList<ArrayList<Integer> g,int parent){
+    v[i]==true;
+    Iterator<Integer> al=g.get(i).iterator();
+    int z;
+      while(al.hasNext()){
+        if(!v[z]){
+          if(isCyclicUtil(z,v,g,i)){
+          return true;
+          }else(z != parent){
+        return true;
+        }
+      }
+    }
+    return false;
+  }
+}
